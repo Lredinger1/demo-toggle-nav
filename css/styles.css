@@ -2,3 +2,105 @@ body {
     background-color: #192f5e;
     font-family: sans-serif;
 }
+
+/* Step 1: Style the showing state of the menu, starting with the mobile view.  Style the layout and the links for how they will look when visible */
+
+header {
+    background-color: #fff;
+    padding: 2rem 0;
+}
+
+.menu a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block;
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+menu.li {
+    line-height: 40px;
+    text-align: center;
+}
+
+.inner-container {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    border: none;
+    background-color: #fff;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+svg {
+    fill: #3f3f3f;
+}
+
+/* Step 2. Now hide the menu.  Once it's hidden this will be the default stage on load. FYI - the display property cannot be transitioned, instead, hide the nav by making it's max-height 0 */
+
+header nav {
+/*Style this so that it will overlap the main content
+...this element will be absolute to the viewport 
+...add in left and top values left: 0 top (height of the header) */
+    position: absolute;
+    left: 0;
+    background-color: #fff;
+    width: 100vw;
+    max-height: 0;
+    top: 110px;
+    overflow: hidden;
+    transition: max-height 1s ease-in-out;
+    text-align: center;
+}
+
+/* Step 3. Create a special class that will show the menu.  This class name will only exist in the CSS for now. Next the JS will add this class to the hidden element for us (nav) */
+
+.show-nav {
+    max-height: 225px;
+}
+
+/* Step 4. add a media query and show the nav by default, hide the button, and style it as a horizantal nav */
+
+@media screen and (min-width: 700px) {
+    .inner-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toggle-btn {
+        display: none;
+    }
+
+    header nav {
+        max-height: 200px;
+        width: unset;
+        overflow: visible;
+        position: static;
+    }
+
+    ul.menu {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .menu a {
+        padding: 0 0.75rem;
+    }
+}
